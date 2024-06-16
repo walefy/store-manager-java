@@ -1,6 +1,7 @@
 package com.walefy.storemanager.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Table(name = "sales")
 public class Sale {
   @Id
@@ -28,6 +30,10 @@ public class Sale {
     inverseJoinColumns = @JoinColumn(name = "product_id")
   )
   private List<Product> products = new ArrayList<>();
+
+  public Sale(LocalDateTime date) {
+    this.date = date;
+  }
 
   public List<Product> getProducts() {
     return products;
