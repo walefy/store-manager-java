@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,24 +24,19 @@ public class Sale {
   @Column(nullable = false)
   private LocalDateTime date;
 
-  @ManyToMany
-  @JoinTable(
-    name = "sales_products",
-    joinColumns = @JoinColumn(name = "sale_id"),
-    inverseJoinColumns = @JoinColumn(name = "product_id")
-  )
-  private List<Product> products = new ArrayList<>();
+  @OneToMany(mappedBy = "sale")
+  private List<SaleProduct> saleProducts = new ArrayList<>();
 
   public Sale(LocalDateTime date) {
     this.date = date;
   }
 
-  public List<Product> getProducts() {
-    return products;
+  public List<SaleProduct> getSaleProducts() {
+    return saleProducts;
   }
 
-  public void setProducts(List<Product> products) {
-    this.products = products;
+  public void setSaleProducts(List<SaleProduct> saleProducts) {
+    this.saleProducts = saleProducts;
   }
 
   public LocalDateTime getDate() {
