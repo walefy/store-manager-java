@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ public class Product {
   @Column(nullable = false)
   private String name;
 
-  @ManyToMany(mappedBy = "products")
-  private List<Sale> sales = new ArrayList<>();
+  @OneToMany(mappedBy = "product")
+  private List<SaleProduct> saleProducts = new ArrayList<>();
 
   public Product(String name) {
     this.name = name;
@@ -43,11 +43,11 @@ public class Product {
     this.name = name;
   }
 
-  public List<Sale> getSales() {
-    return sales;
+  public List<SaleProduct> getSaleProducts() {
+    return saleProducts;
   }
 
-  public void setSales(List<Sale> sales) {
-    this.sales = sales;
+  public void setSaleProducts(List<SaleProduct> saleProducts) {
+    this.saleProducts = saleProducts;
   }
 }
