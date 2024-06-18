@@ -6,7 +6,6 @@ import com.walefy.storemanager.exception.ProductNotFoundException;
 import com.walefy.storemanager.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
