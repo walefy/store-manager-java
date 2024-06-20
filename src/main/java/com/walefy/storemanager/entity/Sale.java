@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "sales")
@@ -19,6 +20,7 @@ public class Sale {
   private Long id;
 
   @Column(nullable = false)
+  @CreationTimestamp
   private LocalDateTime date;
 
   @OneToMany(mappedBy = "sale")
@@ -27,6 +29,8 @@ public class Sale {
   public Sale(LocalDateTime date) {
     this.date = date;
   }
+
+  public Sale() {}
 
   public List<SaleProduct> getSaleProducts() {
     return saleProducts;

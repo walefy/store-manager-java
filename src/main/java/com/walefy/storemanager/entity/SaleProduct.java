@@ -27,6 +27,12 @@ public class SaleProduct {
   @Column(nullable = false)
   private Integer quantity;
 
+  public SaleProduct(Product product, Sale sale, Integer quantity) {
+    this.product = product;
+    this.sale = sale;
+    this.quantity = quantity;
+  }
+
   public SaleProductId getId() {
     return id;
   }
