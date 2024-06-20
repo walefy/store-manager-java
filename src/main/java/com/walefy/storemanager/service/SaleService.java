@@ -29,7 +29,7 @@ public class SaleService {
   }
 
   @Transactional
-  public SaleReturnDto create(List<SaleCreateDto> saleCreate) throws ProductNotFoundException {
+  public Sale create(List<SaleCreateDto> saleCreate) throws ProductNotFoundException {
     Sale sale = this.saleRepository.save(new Sale());
 
     for (SaleCreateDto saleCreateDto : saleCreate) {
@@ -38,6 +38,6 @@ public class SaleService {
       this.saleProductRepository.save(saleProduct);
     }
 
-    return SaleReturnDto.fromEntity(sale);
+    return sale;
   }
 }
