@@ -1,15 +1,14 @@
 package com.walefy.storemanager.service;
 
 import com.walefy.storemanager.dto.SaleCreateDto;
-import com.walefy.storemanager.dto.SaleReturnDto;
 import com.walefy.storemanager.entity.Product;
 import com.walefy.storemanager.entity.Sale;
 import com.walefy.storemanager.entity.SaleProduct;
 import com.walefy.storemanager.exception.ProductNotFoundException;
+import com.walefy.storemanager.exception.SaleNotFoundException;
 import com.walefy.storemanager.repository.SaleProductRepository;
 import com.walefy.storemanager.repository.SaleRepository;
 import jakarta.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +38,18 @@ public class SaleService {
     }
 
     return sale;
+  }
+
+  public List<Sale> find() {
+    return this.saleRepository.findAll();
+  }
+
+  public Sale findById(Long id) throws SaleNotFoundException {
+    return this.saleRepository.findById(id).orElseThrow(SaleNotFoundException::new);
+  }
+
+  public void delete(Long id) throws SaleNotFoundException {
+    Sale sale = this.findById(id);
+    this.saleRepository.delete(sale);
   }
 }
